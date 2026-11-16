@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 
 from PySide6.QtCore import QThread, Signal
+from PySide6.QtGui import QTextCursor
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -69,7 +70,7 @@ class MainWindow(QMainWindow):
         line = f"{speaker}: {message}"
         self.chat.setPlainText(f"{current}\n{line}" if current else line)
         cursor = self.chat.textCursor()
-        cursor.movePosition(cursor.End)
+        cursor.movePosition(QTextCursor.MoveOperation.End)
         self.chat.setTextCursor(cursor)
 
     def submit(self):
